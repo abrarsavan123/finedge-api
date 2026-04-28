@@ -1,0 +1,13 @@
+'use strict';
+const { Router }  = require('express');
+const ctrl        = require('../controllers/transactionController');
+const auth        = require('../middleware/auth');
+const validate    = require('../middleware/validateTransaction');
+const r = Router();
+r.use(auth);
+r.post('/',    validate, ctrl.createTransaction);
+r.get('/',              ctrl.getTransactions);
+r.get('/:id',           ctrl.getTransactionById);
+r.patch('/:id',         ctrl.updateTransaction);
+r.delete('/:id',        ctrl.deleteTransaction);
+module.exports = r;

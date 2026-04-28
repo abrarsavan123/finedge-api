@@ -1,0 +1,10 @@
+'use strict';
+const { Router } = require('express');
+const ctrl = require('../controllers/budgetController');
+const auth = require('../middleware/auth');
+const r = Router();
+r.use(auth);
+r.post('/',    ctrl.createBudget);
+r.get('/',     ctrl.getBudgets);
+r.patch('/:id', ctrl.updateBudget);
+module.exports = r;
